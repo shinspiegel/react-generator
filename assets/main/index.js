@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {ContextProvider} from './context/context'
+import {ContextProvider} from './context/index'
 
 import Routes from './routes'
 
