@@ -2,7 +2,7 @@ const {program, Option} = require('commander')
 const {exec} = require('child_process')
 const fs = require('fs')
 const path = require('path')
-const Page = require('./Component')
+const Page = require('./Page')
 const Component = require('./Component')
 const Context = require('./Context')
 const FileHelper = require('./FileHelper')
@@ -98,9 +98,9 @@ class App {
 
     page() {
         Page.create({
-            componentName: this.opts.component,
+            pageName: this.opts.page,
             originPath: this.originFolder.component,
-            savePath: this.saveFolder.component,
+            savePath: this.saveFolder.pages,
         })
     }
 

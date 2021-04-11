@@ -1,43 +1,43 @@
 const path = require('path')
 const FileHelper = require('./FileHelper')
 
-class Component {
-    static async create({originPath, savePath, componentName}) {
-        Component.createFile({
+class Page {
+    static async create({originPath, savePath, pageName}) {
+        Page.createFile({
             originPath,
             savePath,
-            componentName,
+            pageName,
             extension: '.js',
             fileName: 'index.js',
         })
 
-        Component.createFile({
+        Page.createFile({
             originPath,
             savePath,
-            componentName,
+            pageName,
             extension: '.test.js',
             fileName: 'index.test.js',
         })
 
-        Component.createFile({
+        Page.createFile({
             originPath,
             savePath,
-            componentName,
+            pageName,
             extension: '.scss',
             fileName: 'index.scss',
         })
     }
 
-    static async createFile({originPath, savePath, fileName, extension, componentName}) {
+    static async createFile({originPath, savePath, fileName, extension, pageName}) {
         const filePath = path.join(originPath, fileName)
         const raw = await FileHelper.readFile(filePath)
-        const replacedContent = raw.replaceAll('NAME_COMPONENT', componentName)
+        const replacedContent = raw.replaceAll('NAME_COMPONENT', pageName)
 
-        const savePathComponent = path.join(savePath, componentName)
+        const savePathComponent = path.join(savePath, pageName)
 
         await FileHelper.createFolderIfNotExists(savePathComponent)
-        await FileHelper.saveFile(savePathComponent, componentName + extension, replacedContent)
+        await FileHelper.saveFile(savePathComponent, pageName + extension, replacedContent)
     }
 }
 
-module.exports = Component
+module.exports = Page
