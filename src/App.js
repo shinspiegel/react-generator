@@ -46,19 +46,33 @@ class App {
     }
 
     async start() {
-        await this.run('yarn add react react-dom react-router-dom @testing-library/react node-sass')
-        fs.rmSync('src', {recursive: true})
-        fs.mkdirSync('src', {recursive: true})
-        await this.createFile(this.originFolder.main, this.saveFolder.source, 'index.js')
-        await this.createFile(this.originFolder.main, this.saveFolder.source, 'routes.js')
-        await this.createFile(this.originFolder.main, './', '.prettierrc')
+        const libs = ['react', 'react-dom', 'react-router-dom', '@testing-library/react', 'node-sass']
+
+        await this.run('yarn add ' + libs.join(' ')).catch((e) => console.error(e))
+
+        if (fs.existsSync(this.saveFolder.source)) {
+            fs.rmSync(this.saveFolder.source, {recursive: true})
+        }
+
+        fs.mkdirSync(this.saveFolder.source, {recursive: true})
+
+        this.createFile({
+            fileName: 'index.js',
+            originPath: this.originFolder.main,
+            savePath: this.saveFolder.source,
+        })
+
+        this.createFile({
+            fileName: 'routes.js',
+            originPath: this.originFolder.main,
+            savePath: this.saveFolder.source,
+        })
     }
 
     async createFile({originPath, savePath, fileName}) {
         const filePath = path.join(originPath, fileName)
         const raw = await FileHelper.readFile(filePath)
         const savePathComponent = path.join(savePath)
-
         await FileHelper.createFolderIfNotExists(savePathComponent)
         await FileHelper.saveFile(savePathComponent, fileName, raw)
     }
