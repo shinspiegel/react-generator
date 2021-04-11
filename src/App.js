@@ -98,7 +98,7 @@ class App {
 
     page() {
         Page.create({
-            componentName: this.component,
+            componentName: this.opts.component,
             originPath: this.originFolder.component,
             savePath: this.saveFolder.component,
         })
@@ -106,7 +106,7 @@ class App {
 
     component() {
         Component.create({
-            componentName: this.component,
+            componentName: this.opts.component,
             originPath: this.originFolder.component,
             savePath: this.saveFolder.component,
         })
