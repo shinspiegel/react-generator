@@ -14,6 +14,7 @@ class App {
             .addOption(new Option('-c, --component <component_name>', 'will create a new react component'))
             .addOption(new Option('-p, --page <page_name>', 'will create a new page'))
             .addOption(new Option('-t, --context', 'will create the context for the project'))
+            .addOption(new Option('-s, --start', 'will remove the src folder and create a new one'))
             .parse(process.argv)
 
         this.opts = program.opts()
