@@ -46,7 +46,7 @@ class App {
     }
 
     async start() {
-        await this.run('yarn install react react-dom react-router-dom @testing-library/react')
+        await this.run('yarn add react react-dom react-router-dom @testing-library/react node-sass')
         fs.rmSync('src', {recursive: true})
         fs.mkdirSync('src', {recursive: true})
         await this.createFile(this.originFolder.main, this.saveFolder.source, 'index.js')
