@@ -1,28 +1,23 @@
 const {program, Option} = require('commander')
+const fs = require('fs')
 const path = require('path')
 const Component = require('./Component')
+const Context = require('./Context')
 const FileHelper = require('./FileHelper')
 
-const componentOption = new Option('-c, --component <component_name>', 'will create a new react component')
-
 class App {
-    constructor(argsList) {
+    constructor() {
         program
-            .version('0.0.1', '-v, --version', 'output the current version')
-            .addOption(componentOption)
+            .version(FileHelper.readJson('package.json').version, '-v, --version', 'output the current version')
+            .addOption(new Option('-c, --component <component_name>', 'will create a new react component'))
+            .addOption(new Option('-t, --context', 'will create the context for the project'))
             .parse(process.argv)
 
         this.opts = program.opts()
-        this.component = program.opts().component
 
         this.originFolder = {
-            component: path.join('assets/comp'),
-        }
-
-        this.componentFile = {
-            reactComp: path.join('assets/comp/index.js'),
-            reactTest: path.join('assets/comp/index.test.js'),
-            reactStyle: path.join('assets/comp/index.scss'),
+            component: path.join('node_modules/react-generator-tool/assets/comp'),
+            context: path.join('node_modules/react-generator-tool/assets/context'),
         }
 
         this.saveFolder = {
@@ -35,13 +30,21 @@ class App {
 
     async main() {
         try {
-            // console.log('This is the options created', this.opts, this)
+            if (this.opts.start) {
+            }
 
-            if (this.component) {
+            if (this.opts.component) {
                 Component.create({
                     componentName: this.component,
                     originPath: this.originFolder.component,
                     savePath: this.saveFolder.component,
+                })
+            }
+
+            if (this.opts.context) {
+                Context.create({
+                    originPath: this.originFolder.context,
+                    savePath: this.saveFolder.context,
                 })
             }
         } catch (err) {

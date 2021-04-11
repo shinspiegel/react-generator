@@ -1,11 +1,12 @@
 {
-    "name": "react_helper_tools",
-    "version": "1.0.0",
+    "name": "react-generator-tool",
+    "version": "0.1.1",
     "description": "",
     "main": "./index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
+    "bin": "./index.js",
     "keywords": [],
     "author": "",
     "license": "MIT",
