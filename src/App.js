@@ -67,6 +67,8 @@ class App {
             originPath: this.originFolder.main,
             savePath: this.saveFolder.source,
         })
+
+        this.context()
     }
 
     async createFile({originPath, savePath, fileName}) {
