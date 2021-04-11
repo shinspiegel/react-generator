@@ -1,9 +1,9 @@
 const path = require('path')
 const FileHelper = require('./FileHelper')
 
-class Page {
+class Component {
     static async create({originPath, savePath, componentName}) {
-        Page.createFile({
+        Component.createFile({
             originPath,
             savePath,
             componentName,
@@ -11,7 +11,7 @@ class Page {
             fileName: 'index.js',
         })
 
-        Page.createFile({
+        Component.createFile({
             originPath,
             savePath,
             componentName,
@@ -19,7 +19,7 @@ class Page {
             fileName: 'index.test.js',
         })
 
-        Page.createFile({
+        Component.createFile({
             originPath,
             savePath,
             componentName,
@@ -40,4 +40,4 @@ class Page {
     }
 }
 
-module.exports = Page
+module.exports = Component
