@@ -7,7 +7,6 @@ class Page {
             originPath,
             savePath,
             componentName,
-            extension: '.js',
             fileName: 'index.js',
         })
 
@@ -15,7 +14,6 @@ class Page {
             originPath,
             savePath,
             componentName,
-            extension: '.test.js',
             fileName: 'index.test.js',
         })
 
@@ -23,12 +21,11 @@ class Page {
             originPath,
             savePath,
             componentName,
-            extension: '.scss',
             fileName: 'index.scss',
         })
     }
 
-    static async createFile({originPath, savePath, fileName, extension, componentName}) {
+    static async createFile({originPath, savePath, fileName, componentName}) {
         const filePath = path.join(originPath, fileName)
         const raw = await FileHelper.readFile(filePath)
         const replacedContent = raw.replaceAll('NAME_COMPONENT', componentName)
@@ -36,7 +33,7 @@ class Page {
         const savePathComponent = path.join(savePath, componentName)
 
         await FileHelper.createFolderIfNotExists(savePathComponent)
-        await FileHelper.saveFile(savePathComponent, componentName + extension, replacedContent)
+        await FileHelper.saveFile(savePathComponent, fileName, replacedContent)
     }
 }
 
