@@ -44,6 +44,22 @@ class FileHelper {
             })
         })
     }
+
+    static getRoot() {
+        return path.resolve(__dirname)
+    }
+
+    static readRCFile() {
+        try {
+            const pathToFile = "./.rgrc"
+            const rgrcFile = FileHelper.readJson(pathToFile)
+            
+            return rgrcFile
+        } catch(e) {
+            console.error("No '.rgrc' file.")
+            return undefined
+        }
+    }
 }
 
 module.exports = FileHelper

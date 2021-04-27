@@ -21,9 +21,16 @@ class App {
 
         this.originFolder = {
             component: path.join('node_modules/react-generator-tool/assets/comp'),
+            pages: path.join('node_modules/react-generator-tool/assets/comp'),
             context: path.join('node_modules/react-generator-tool/assets/context'),
             main: path.join('node_modules/react-generator-tool/assets/main'),
         }
+
+        this.components = [
+            "index.js",
+            "index.scss",
+            "index.test.js"
+        ]
 
         this.saveFolder = {
             component: path.join('src/components'),
@@ -31,6 +38,20 @@ class App {
             context: path.join('src/context'),
             source: path.join('src'),
         }
+
+        this.pages = [
+            "index.js",
+            "index.scss",
+            "index.test.js"
+        ]
+
+        const generatorFile = FileHelper.readRCFile()
+
+        console.log("Generator?", generatorFile)
+
+        this.updateFromGenerator(generatorFile)
+
+
     }
 
     async main() {
@@ -42,6 +63,46 @@ class App {
         } catch (err) {
             console.log('Something went wrong.')
             console.log('This is the cause: ', err)
+        }
+    }
+
+    updateFromGenerator(generatorFile) {
+        if(generatorFile) {
+            if(generatorFile.saveFolder) {
+                if(generatorFile.saveFolder.component) {
+                    this.saveFolder.component = path.join(generatorFile.saveFolder.component)
+                }
+
+                if(generatorFile.saveFolder.pages) {
+                    this.saveFolder.pages = path.join(generatorFile.saveFolder.pages)
+                }
+
+                if(generatorFile.saveFolder.context) {
+                    this.saveFolder.context = path.join(generatorFile.saveFolder.context)
+                }
+            }
+
+            if(generatorFile.originFolder) {
+                if(generatorFile.originFolder.component) {
+                    this.originFolder.component = path.join(generatorFile.originFolder.component)
+                }
+
+                if(generatorFile.originFolder.pages) {
+                    this.originFolder.pages = path.join(generatorFile.originFolder.pages)
+                }
+
+                if(generatorFile.originFolder.context) {
+                    this.originFolder.context = path.join(generatorFile.originFolder.context)
+                }
+            }
+
+            if(generatorFile.components) {
+                this.components = generatorFile.components
+            }
+
+            if(generatorFile.pages) {
+                this.pages = generatorFile.pages
+            }
         }
     }
 
@@ -99,8 +160,9 @@ class App {
     page() {
         Page.create({
             pageName: this.opts.page,
-            originPath: this.originFolder.component,
+            originPath: this.originFolder.pages,
             savePath: this.saveFolder.pages,
+            fileList: this.pages
         })
     }
 
@@ -109,6 +171,7 @@ class App {
             componentName: this.opts.component,
             originPath: this.originFolder.component,
             savePath: this.saveFolder.component,
+            fileList: this.components
         })
     }
 

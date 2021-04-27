@@ -32,9 +32,43 @@ Options:
   -h, --help                        display help for command
 ```
 
+#### The `.rgrc` file
+
+This is a small file that can be used to customize the paths for origin and destination folders. And add or remove files for the generation tool.
+
+This a example with all the option available and the default values:
+
+```json
+{
+    "saveFolder": {
+        "component": "src/components",
+        "pages": "src/pages",
+        "context": "src/context"
+    },
+    "originFolder": {
+        "component": "node_modules/react-generator-tool/assets/comp",
+        "pages": "node_modules/react-generator-tool/assets/comp",
+        "context": "node_modules/react-generator-tool/assets/context"
+    },
+    "components": [
+        "index.js",
+        "index.scss",
+        "index.test.js"
+    ],
+    "pages": [
+        "index.js",
+        "index.scss",
+        "index.test.js"
+    ]
+}
+```
+
+For the components and pages, on the `assets` folder for the `react-generator-tool`, they have the following files to be used: `index.css`, `index.scss`, `index.js`, `index.tsx`, `index.test.js`, `index.test.tsx`. You can add, remove or change only the files if you want on the components.
+
+
 #### Component (-c) or Page (-p)
 
-With a simple usage of `yarn rg -c ComponentName`, this will create a folder inside the components or pages folder with the following files:
+With a simple usage of `yarn rg -c ComponentName` or `yarn rg -p PageName` , this will create a folder inside the components or pages folder with the following files:
 
 ```js
 // index.js
@@ -148,8 +182,8 @@ I'm still on this project. There is a lot of features missing, right know it onl
 
 Because every cool kid need a roadmap, this is the things I want to do:
 
--   [ ] Allow use of a `.rgrc` file to customize the origin of the component
--   [ ] Allow other kind of components
+-   [x] Allow use of a `.rgrc` file to customize the origin of the component
+-   [x] Allow other kind of components
 -   [ ] Do a better job on the `--start`, right now it's too slow and remove the whole `src`folder
 -   [ ] Make the `--start` to create the `.prettierrc` with the things I like
 -   [ ] Check the libs installed before install new ones
