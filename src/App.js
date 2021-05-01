@@ -6,7 +6,7 @@ const Page = require('./Page')
 const Component = require('./Component')
 const Context = require('./Context')
 const FileHelper = require('./FileHelper')
-const {default: StringHelper} = require('./StringHelper')
+const StringHelper = require('./StringHelper')
 
 class App {
     constructor() {
