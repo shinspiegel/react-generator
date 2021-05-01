@@ -22,49 +22,38 @@ yarn rg -h
 
 They have the following commands available:
 
-```
-Options:
-  -v, --version                     output the current version
-  -c, --component <component_name>  will create a new react component
-  -p, --page <page_name>            will create a new page
-  -t, --context                     will create the context for the project
-  -s, --start                       will remove the src folder and create a new one
-  -h, --help                        display help for command
-```
+| Flag | Name                         | Exemple Usage         | Description                                  |
+| ---- | ---------------------------- | --------------------- | -------------------------------------------- |
+| -v   | --version                    | `yarn rg -h`          | Outputs the current version of the cli       |
+| -c   | --component <component_name> | `yarn rg -c button`   | Will create a component with **Button** name |
+| -p   | --page <page_name>           | `yarn rg -p homePage` | will create a new page named **HomePage**    |
+| -t   | --context                    | `yarn rg -t`          | will create the context for the project      |
+| -h   | --help                       | `yarn rg -h`          | display help for command                     |
 
 #### The `.rgrc` file
 
-This is a small file that can be used to customize the paths for origin and destination folders. And add or remove files for the generation tool.
+This is a small file that can be used to customize the paths for source and destination folders. And add or remove files for the generation tool.
 
 This a example with all the option available and the default values:
 
 ```json
 {
-    "saveFolder": {
+    "destiny": {
         "component": "src/components",
         "pages": "src/pages",
         "context": "src/context"
     },
-    "originFolder": {
+    "source": {
         "component": "node_modules/react-generator-tool/assets/comp",
         "pages": "node_modules/react-generator-tool/assets/comp",
         "context": "node_modules/react-generator-tool/assets/context"
     },
-    "components": [
-        "index.js",
-        "index.scss",
-        "index.test.js"
-    ],
-    "pages": [
-        "index.js",
-        "index.scss",
-        "index.test.js"
-    ]
+    "components": ["index.js", "index.scss", "index.test.js"],
+    "pages": ["index.js", "index.scss", "index.test.js"]
 }
 ```
 
 For the components and pages, on the `assets` folder for the `react-generator-tool`, they have the following files to be used: `index.css`, `index.scss`, `index.js`, `index.tsx`, `index.test.js`, `index.test.tsx`. You can add, remove or change only the files if you want on the components.
-
 
 #### Component (-c) or Page (-p)
 
@@ -103,7 +92,7 @@ describe('components/ComponentName', () => {
 
 #### Context (-t)
 
-This will create a basic app context for the application using the [`ContextAPI`](https://reactjs.org/docs/context.html) with [`useReducer`](https://reactjs.org/docs/hooks-reference.html) hook. This will add a folder called context on the `src` or your project with the following files:
+This will create a basic app context for the application using the [ContextAPI](https://reactjs.org/docs/context.html) with [useReducer](https://reactjs.org/docs/hooks-reference.html) hook. This will add a folder called context on the `src` or your project with the following files:
 
 ```js
 // index.js
@@ -184,6 +173,6 @@ Because every cool kid need a roadmap, this is the things I want to do:
 
 -   [x] Allow use of a `.rgrc` file to customize the origin of the component
 -   [x] Allow other kind of components
--   [ ] Do a better job on the `--start`, right now it's too slow and remove the whole `src`folder
--   [ ] Make the `--start` to create the `.prettierrc` with the things I like
--   [ ] Check the libs installed before install new ones
+-   [ ] ~~Do a better job on the `--start`, right now it's too slow and remove the whole `src`folder~~
+-   [ ] ~~Make the `--start` to create the `.prettierrc` with the things I like~~
+-   [ ] ~~Check the libs installed before install new ones~~

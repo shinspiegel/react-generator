@@ -3,7 +3,7 @@ const FileHelper = require('./FileHelper')
 
 class Page {
     static async create({originPath, savePath, pageName, fileList}) {
-        fileList.forEach(fileName => {
+        fileList.forEach((fileName) => {
             Page.createFile({
                 originPath,
                 savePath,

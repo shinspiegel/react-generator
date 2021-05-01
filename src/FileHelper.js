@@ -51,11 +51,11 @@ class FileHelper {
 
     static readRCFile() {
         try {
-            const pathToFile = "./.rgrc"
+            const pathToFile = './.rgrc'
             const rgrcFile = FileHelper.readJson(pathToFile)
-            
+
             return rgrcFile
-        } catch(e) {
+        } catch (e) {
             console.error("No '.rgrc' file.")
             return undefined
         }
