@@ -39,8 +39,6 @@ class App {
 
         const generatorFile = FileHelper.readRCFile()
 
-        console.log('Generator?', generatorFile)
-
         this.updateFromGenerator(generatorFile)
     }
 
