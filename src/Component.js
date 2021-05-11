@@ -16,7 +16,7 @@ class Page {
     static async createFile({originPath, savePath, fileName, componentName}) {
         const filePath = path.join(originPath, fileName)
         const raw = await FileHelper.readFile(filePath)
-        const replacedContent = raw.replaceAll('NAME_COMPONENT', componentName)
+        const replacedContent = raw.replace(/NAME_COMPONENT/g, componentName)
         const savePathComponent = path.join(savePath, componentName)
         await FileHelper.createFolderIfNotExists(savePathComponent)
         await FileHelper.saveFile(savePathComponent, fileName, replacedContent)
