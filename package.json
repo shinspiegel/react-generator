@@ -5,7 +5,7 @@
         "email": "shin.jef@gmail.com",
         "url": "https://jeferson.me"
     },
-    "version": "0.1.26",
+    "version": "0.1.27",
     "description": "This is a small package to help generate components for my projects.",
     "keywords": [
         "react",
