@@ -1,30 +1,27 @@
 {
     "name": "react-generator-tool",
+    "version": "0.1.27",
+    "main": "./index.js",
+    "bin": {
+        "react-generator-tool": "./index.js",
+        "rg": "./index.js"
+    },
+    "repository": "github:shinspiegel/react-generator",
     "author": {
         "name": "Jeferson 'Shin'",
         "email": "shin.jef@gmail.com",
         "url": "https://jeferson.me"
     },
-    "version": "0.1.27",
     "description": "This is a small package to help generate components for my projects.",
     "keywords": [
         "react",
         "code generator",
         "components"
     ],
-    "main": "./index.js",
-    "bin": {
-        "react-generator-tool": "./index.js",
-        "rg": "./index.js"
-    },
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": "github:shinspiegel/react-generator",
     "homepage": "https://github.com/shinspiegel/react-generator",
     "bugs": "https://github.com/shinspiegel/react-generator/issues",
     "dependencies": {
-        "commander": "^7.2.0"
+        "commander": "^8.3.0"
     },
     "license": "MIT"
 }

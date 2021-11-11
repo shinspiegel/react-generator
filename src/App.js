@@ -12,9 +12,9 @@ class App {
     constructor() {
         program
             .version(FileHelper.readJson('package.json').version, '-v, --version', 'output the current version')
-            .addOption(new Option('-c, --component <component_name>', 'will create a new react component'))
-            .addOption(new Option('-p, --page <page_name>', 'will create a new page'))
-            .addOption(new Option('-t, --context', 'will create the context for the project'))
+            .option('-c, --component <component_name>', 'will create a new react component')
+            .option('-p, --page <page_name>', 'will create a new page')
+            .option('-t, --context', 'will create the context for the project')
             .parse(process.argv)
 
         this.opts = program.opts()
