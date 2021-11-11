@@ -15,7 +15,8 @@ class App {
             .option('-c, --component <component_name>', 'will create a new react component')
             .option('-p, --page <page_name>', 'will create a new page')
             .option('-t, --context', 'will create the context for the project')
-            .parse(process.argv)
+
+        program.parse()
 
         this.opts = program.opts()
 
