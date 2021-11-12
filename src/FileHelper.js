@@ -1,11 +1,11 @@
-const fs = require('fs')
-const path = require('path')
+const fs = require("fs")
+const path = require("path")
 
 class FileHelper {
     static fileExists(fileName) {
         try {
             if (!fs.existsSync(fileName)) {
-                throw new Error('File do not exists')
+                throw new Error("File do not exists")
             }
         } catch (err) {
             throw new Error(err)
@@ -22,7 +22,7 @@ class FileHelper {
         FileHelper.fileExists(filePath)
 
         return new Promise((result, reject) => {
-            fs.readFile(filePath, 'utf-8', (err, data) => {
+            fs.readFile(filePath, "utf-8", (err, data) => {
                 if (err) reject(err)
                 result(data)
             })
@@ -31,7 +31,7 @@ class FileHelper {
 
     static async createFolderIfNotExists(folderPath) {
         if (!fs.existsSync(folderPath)) {
-            fs.mkdirSync(folderPath, {recursive: true})
+            fs.mkdirSync(folderPath, { recursive: true })
         }
     }
 
@@ -51,7 +51,7 @@ class FileHelper {
 
     static readRCFile() {
         try {
-            const pathToFile = './.rgrc'
+            const pathToFile = "./.rgrc"
             const rgrcFile = FileHelper.readJson(pathToFile)
 
             return rgrcFile

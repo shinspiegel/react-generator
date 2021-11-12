@@ -1,42 +1,41 @@
-const {program, Option} = require('commander')
-const {exec} = require('child_process')
-const fs = require('fs')
-const path = require('path')
-const Page = require('./Page')
-const Component = require('./Component')
-const Context = require('./Context')
-const FileHelper = require('./FileHelper')
-const StringHelper = require('./StringHelper')
+const { Command } = require("commander")
+const path = require("path")
+const Page = require("./Page")
+const Component = require("./Component")
+const Context = require("./Context")
+const FileHelper = require("./FileHelper")
+const StringHelper = require("./StringHelper")
 
 class App {
     constructor() {
-        program
-            .version(FileHelper.readJson('package.json').version, '-v, --version', 'output the current version')
-            .option('-c, --component <component_name>', 'will create a new react component')
-            .option('-p, --page <page_name>', 'will create a new page')
-            .option('-t, --context', 'will create the context for the project')
+        this.program = new Command()
 
-        program.parse()
+        this.program
+            .version(FileHelper.readJson("package.json").version, "-v, --version", "output the current version")
+            .option("-c, --component <component_name>", "will create a new react component")
+            .option("-p, --page <page_name>", "will create a new page")
+            .option("-t, --context", "will create the context for the project")
+            .parse()
 
-        this.opts = program.opts()
+        this.opts = this.program.opts()
 
         this.source = {
-            component: path.join('node_modules/react-generator-tool/assets/comp'),
-            pages: path.join('node_modules/react-generator-tool/assets/comp'),
-            context: path.join('node_modules/react-generator-tool/assets/context'),
-            main: path.join('node_modules/react-generator-tool/assets/main'),
+            component: path.join("node_modules/react-generator-tool/assets/comp"),
+            pages: path.join("node_modules/react-generator-tool/assets/comp"),
+            context: path.join("node_modules/react-generator-tool/assets/context"),
+            main: path.join("node_modules/react-generator-tool/assets/main"),
         }
 
-        this.components = ['index.js', 'index.scss', 'index.test.js']
+        this.components = ["index.js", "index.scss", "index.test.js"]
 
         this.destiny = {
-            component: path.join('src/components'),
-            pages: path.join('src/pages'),
-            context: path.join('src/context'),
-            source: path.join('src'),
+            component: path.join("src/components"),
+            pages: path.join("src/pages"),
+            context: path.join("src/context"),
+            source: path.join("src"),
         }
 
-        this.pages = ['index.js', 'index.scss', 'index.test.js']
+        this.pages = ["index.js", "index.scss", "index.test.js"]
 
         const generatorFile = FileHelper.readRCFile()
 
@@ -49,8 +48,8 @@ class App {
             if (this.opts.context) this.context()
             if (this.opts.page) this.page()
         } catch (err) {
-            console.log('Something went wrong.')
-            console.log('This is the cause: ', err)
+            console.log("Something went wrong.")
+            console.log("This is the cause: ", err)
         }
     }
 
@@ -94,7 +93,7 @@ class App {
         }
     }
 
-    async createFile({originPath, savePath, fileName}) {
+    async createFile({ originPath, savePath, fileName }) {
         const filePath = path.join(originPath, fileName)
         const raw = await FileHelper.readFile(filePath)
         const savePathComponent = path.join(savePath)
